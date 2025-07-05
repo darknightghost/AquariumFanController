@@ -1,4 +1,0 @@
-/home/darknightghost/projects/AquariumFanController/firmware/.build/CMakeFiles/AquariumFanController.dir
-/home/darknightghost/projects/AquariumFanController/firmware/.build/CMakeFiles/AquariumFanController.hex.dir
-/home/darknightghost/projects/AquariumFanController/firmware/.build/CMakeFiles/edit_cache.dir
-/home/darknightghost/projects/AquariumFanController/firmware/.build/CMakeFiles/rebuild_cache.dir

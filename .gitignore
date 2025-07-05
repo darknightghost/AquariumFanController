@@ -67,6 +67,8 @@ main.spec
 *.log
 .build/*
 build/*
+*/.build/*
+*/build/*
 Makefile
 .ycm_extra_conf.py
 lib/*
@@ -74,3 +76,4 @@ bin/*
 doc/*
 resource/resources.qrc
 FanTempController_backup/*
+*/FanTempController_backup/*
