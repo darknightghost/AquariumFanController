@@ -53,3 +53,24 @@ dkms.conf
 
 # debug information files
 *.dwo
+*.pyc
+.idea/*
+tags
+*~
+*.swp
+.directory
+.config
+__pycache__/*
+.runtime/*
+pack/*
+main.spec
+*.log
+.build/*
+build/*
+Makefile
+.ycm_extra_conf.py
+lib/*
+bin/*
+doc/*
+resource/resources.qrc
+FanTempController_backup/*

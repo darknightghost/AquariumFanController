@@ -1,0 +1,1 @@
+/usr/bin/sdcc CMakeFiles/AquariumFanController.dir/source/main.c.rel CMakeFiles/AquariumFanController.dir/source/platform.c.rel -o /home/darknightghost/projects/AquariumFanController/bin/AquariumFanController.ihx

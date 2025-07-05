@@ -1,0 +1,98 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineSystem.cmake:200 (message)"
+      - "CMakeLists.txt:22 (project)"
+    message: |
+      The target system is: Generic -  - 
+      The host system is: Linux - 6.12.35-1-lts - x86_64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "/usr/share/cmake/Modules/CMakeDetermineCCompiler.cmake:123 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:22 (project)"
+    message: |
+      Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+      Compiler: /usr/bin/sdcc 
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.asm"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.ihx"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.lk"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.lst"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.map"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.mem"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.rel"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.rst"
+      
+      Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.sym"
+      
+      The C compiler identification is SDCC, found in:
+        /home/darknightghost/projects/AquariumFanController/firmware/.build/CMakeFiles/4.0.3-dirty/CompilerIdC/CMakeCCompilerId.asm
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:22 (project)"
+    checks:
+      - "Detecting C compiler ABI info"
+    directories:
+      source: "/home/darknightghost/projects/AquariumFanController/firmware/.build/CMakeFiles/CMakeScratch/TryCompile-h5EQl9"
+      binary: "/home/darknightghost/projects/AquariumFanController/firmware/.build/CMakeFiles/CMakeScratch/TryCompile-h5EQl9"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_C_FLAGS_DEBUG: ""
+      CMAKE_EXE_LINKER_FLAGS: ""
+    buildResult:
+      variable: "CMAKE_C_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: '/home/darknightghost/projects/AquariumFanController/firmware/.build/CMakeFiles/CMakeScratch/TryCompile-h5EQl9'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/make -f Makefile cmTC_97431/fast
+        /usr/bin/make  -f CMakeFiles/cmTC_97431.dir/build.make CMakeFiles/cmTC_97431.dir/build
+        make[1]: Entering directory '/home/darknightghost/projects/AquariumFanController/firmware/.build/CMakeFiles/CMakeScratch/TryCompile-h5EQl9'
+        Building C object CMakeFiles/cmTC_97431.dir/CMakeCCompilerABI.c.rel
+        /usr/bin/sdcc    -o CMakeFiles/cmTC_97431.dir/CMakeCCompilerABI.c.rel -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+        Linking C executable cmTC_97431.ihx
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_97431.dir/link.txt --verbose=1
+        /usr/bin/sdcc CMakeFiles/cmTC_97431.dir/CMakeCCompilerABI.c.rel -o cmTC_97431.ihx
+        make[1]: Leaving directory '/home/darknightghost/projects/AquariumFanController/firmware/.build/CMakeFiles/CMakeScratch/TryCompile-h5EQl9'
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "/usr/share/cmake/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "/usr/share/cmake/Modules/CMakeTestCCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:22 (project)"
+    message: |
+      Parsed C implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)))("|,| |$)]
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+...
