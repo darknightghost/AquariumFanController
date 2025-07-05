@@ -1,9 +1,11 @@
+#include <clock.h>
+
 #include <platform.h>
 
 /**
  * @brief       Initialize platform.
  */
-void platform_init()
+void platform_init(void)
 {
     // Disable interrpution.
     EA = 0;
@@ -25,6 +27,9 @@ void platform_init()
     P6M1 = 0xFF;
     P7M0 = 0;
     P7M1 = 0xFF;
+
+    // Initialize system clock.
+    clock_init();
 
     // Initialize I/O ports.
 }

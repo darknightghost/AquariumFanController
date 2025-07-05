@@ -2,8 +2,8 @@
 
 #include <stdint.h>
 
-// Definations of STC8G1K08-36I-SOP8
-// IRC = 33.1776 MHz
+// Definations of STC8H4K64TL-40I-LQFP32
+// IRC = 35 MHz
 
 #if defined EDITOR_AUTO_COMPLETE
     // Auto-complete.
@@ -13,7 +13,7 @@
     #define __at(addr)
     #define __sfr  uint8_t
     #define __sbit uint8_t
-    #define __interrupt
+    #define __interrupt(v)
     #define INT_TIMER0
     #define INT_INT1
     #define INT_UART1
@@ -200,4 +200,4 @@ __sfr __at(0xF5) IAP_TPS;
 /**
  * @brief       Initialize platform.
  */
-extern void platform_init();
+extern void platform_init(void);
