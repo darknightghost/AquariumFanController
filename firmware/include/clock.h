@@ -26,4 +26,4 @@ extern uint32_t getSystemClock(void);
 /**
  * @brief       Timer0 ISR.
  */
-extern void timer0ISR(void) __interrupt(INT_TIMER0);
+extern void clockTimer0ISR(void) __interrupt(INT_TIMER0);

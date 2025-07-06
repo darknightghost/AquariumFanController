@@ -9,6 +9,8 @@
  * Timer0   : System clock.
  * Timer1   : UART0.
  * Timer2   : 1-wire bus timer.
+ * Timer3   : Fan pwm.
+ * Timer4   : Display.
  * UART0    : Debug console.
  */
 #define IRC_FEQ 35000000
@@ -27,9 +29,15 @@
     #define INT_UART1
 
 #else
+    #define INT_0      0
     #define INT_TIMER0 1
     #define INT_INT1   2
+    #define INT_TIMER1 3
     #define INT_UART1  4
+    #define INT_ADC    5
+    #define INT_TIMER2 12
+    #define INT_TIMER3 19
+    #define INT_TIMER4 20
 
 #endif
 

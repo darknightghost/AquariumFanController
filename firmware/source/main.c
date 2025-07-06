@@ -6,7 +6,7 @@
 /**
  * @brief       Main loop.
  */
-void mainLoop()
+void mainLoop(void)
 {
     setStatusLED(true);
     while (1) {

@@ -63,7 +63,7 @@ uint32_t getSystemClock(void)
 /**
  * @brief       Timer0 ISR.
  */
-void timer0ISR(void) __interrupt(INT_TIMER0)
+void clockTimer0ISR(void) __interrupt(INT_TIMER0)
 {
     EA = 0;
     l_systemTime += SYS_TICK;

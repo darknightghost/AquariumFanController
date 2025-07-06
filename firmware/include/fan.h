@@ -16,9 +16,9 @@
 extern void initFan(void);
 
 /**
- * @brief       Fan pwm task.
+ * @brief       Start fan.
  */
-extern void fanTask(void);
+extern void startFan(void);
 
 /**
  * @brief       Task to test fan.
@@ -31,3 +31,8 @@ extern void testFanTask(void);
  * @param[in]   percentage  Percentage.
  */
 extern void setFanPercentage(uint8_t percentage);
+
+/**
+ * @brief       Timer0 ISR.
+ */
+extern void fanTimer3ISR(void) __interrupt(INT_TIMER3);
