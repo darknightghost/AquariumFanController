@@ -38,6 +38,7 @@ add_compile_options (
     "--iram-size" "${IDATA_SIZE}"
     "--xram-size" "${XDATA_SIZE}"
     "-DBUILD_FIRMWARE"
+    "--disable-warning" "88"
     )
 
 include_directories (

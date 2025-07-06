@@ -22,13 +22,13 @@ void initStatusLED(void)
  */
 void testStatusLEDTask(void)
 {
-    static __xdata uint32_t oldTime     = 0;
-    static __xdata bool     status      = false;
-    uint32_t                currentTime = getSystemClock();
-    if (currentTime - oldTime >= 500L * 1000L) {
+    static __xdata uint32_t oldCount     = 0;
+    static __xdata bool     status       = false;
+    uint32_t                currentCount = getSystemClock() / (500L * 1000);
+    if (currentCount != oldCount) {
         status = ! status;
         setStatusLED(status);
-        oldTime = currentTime;
+        oldCount = currentCount;
     }
 }
 

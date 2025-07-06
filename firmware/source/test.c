@@ -18,6 +18,8 @@ bool needTest(void)
     return GPIO_PORT_TEST == 0;
 }
 
+#include <hd_math.h>
+
 /**
  * @brief       Test loop.
  */

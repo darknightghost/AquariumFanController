@@ -33,6 +33,9 @@
 
 #endif
 
+// Memory
+__sfr __at(0xBA) P_SW2;
+
 // I/O ports.
 // P0
 __sfr  __at(0x80) P0;
@@ -199,6 +202,9 @@ __sbit __at(0xAF) EA;
 __sfr __at(0xAF) IE2;
 __sfr __at(0x8F) INTCLKO;
 __sfr __at(0xB8) IP;
+#include <stdbool.h>
+#include <stdint.h>
+
 __sfr __at(0xB7) IPH;
 __sfr __at(0xB5) IP2;
 __sfr __at(0xB6) IP2H;
@@ -218,6 +224,19 @@ __sfr __at(0xF5) IAP_TPS;
 
 // RST
 __sfr __at(0xFF) RST_CFG;
+
+// Math.
+#define MD3 (*((uint8_t *)0xFCF0))
+#define MD2 (*((uint8_t *)0xFCF1))
+#define MD1 (*((uint8_t *)0xFCF2))
+#define MD0 (*((uint8_t *)0xFCF3))
+
+#define MD5 (*((uint8_t *)0xFCF4))
+#define MD4 (*((uint8_t *)0xFCF5))
+
+#define ARCON (*((uint8_t *)0xFCF6))
+
+#define OPCON (*((uint8_t *)0xFCF7))
 
 /**
  * @brief       Initialize platform.
