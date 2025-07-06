@@ -5,18 +5,44 @@
 /// System time.
 static __data uint32_t l_systemTime;
 
+/// Clock initial value.
+#define l_clockInitValue (65536 - (IRC_FEQ / 1000000) * SYS_TICK)
+
 /**
  * @brief       Initialize clock.
  */
-void clock_init(void)
+void initClock(void)
 {
     l_systemTime = 0;
+
+    // Stop timer 0.
+    TR0 = 0;
+
+    // Set timer 0 to 1T mode.
+    AUXR |= 0x80;
+
+    // Set timer0 to 16bit reload mode, use as timer, ignore INT0.
+    TMOD &= 0xF0;
+
+    // Set timer 0 initial value.
+    TL0 = l_clockInitValue & 0xFF;
+    TH0 = l_clockInitValue >> 8;
+}
+
+/**
+ * @brief       Start clock.
+ */
+void startClock(void)
+{
+    // Start timer 0.
+    TF0 = 0;
+    TR0 = 1;
 }
 
 /**
  * @brief       Get system clock.
  */
-uint32_t get_system_clock(void)
+uint32_t getSystemClock(void)
 {
     // Lock.
     EA = 0;
@@ -33,9 +59,9 @@ uint32_t get_system_clock(void)
 /**
  * @brief       Timer0 ISR.
  */
-void timer0_isr(void) __interrupt(INT_TIMER0)
+void timer0ISR(void) __interrupt(INT_TIMER0)
 {
     EA = 0;
-    l_systemTime += 20;
+    l_systemTime += SYS_TICK;
     EA = 1;
 }

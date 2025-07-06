@@ -4,19 +4,26 @@
 
 #include <platform.h>
 
+#define SYS_TICK 10
+
 /**
  * @brief       Initialize clock.
  */
-extern void clock_init(void);
+extern void initClock(void);
+
+/**
+ * @brief       Start clock.
+ */
+extern void startClock(void);
 
 /**
  * @brief       Get system clock.
  *
  * @return      System steady clock time(microseconds).
  */
-extern uint32_t get_system_clock(void);
+extern uint32_t getSystemClock(void);
 
 /**
  * @brief       Timer0 ISR.
  */
-extern void timer0_isr(void) __interrupt(INT_TIMER0);
+extern void timer0ISR(void) __interrupt(INT_TIMER0);

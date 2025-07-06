@@ -1,9 +1,31 @@
 #include <clock.h>
 #include <platform.h>
+#include <status_led.h>
+#include <test.h>
 
-void main(void)
+/**
+ * @brief       Main loop.
+ */
+void mainLoop()
 {
-    platform_init();
     while (1) {
-    };
+    }
+}
+
+/**
+ * @brief       Entery.
+ *
+ * @return      Not used.
+ */
+int main(void)
+{
+    initPlatform();
+
+    // if (needTest()) {
+    testLoop();
+    //} else {
+    // mainLoop();
+    //}
+
+    return 0;
 }

@@ -2,8 +2,16 @@
 
 #include <stdint.h>
 
-// Definations of STC8H4K64TL-40I-LQFP32
-// IRC = 35 MHz
+/**
+ * Definations of STC8H4K64TL-40I-LQFP32
+ *
+ * IRC      : 35 MHz
+ * Timer0   : System clock.
+ * Timer1   : UART0.
+ * Timer2   : 1-wire bus timer.
+ * UART0    : Debug console.
+ */
+#define IRC_FEQ 35000000
 
 #if defined EDITOR_AUTO_COMPLETE
     // Auto-complete.
@@ -158,7 +166,16 @@ __sfr __at(0x99) SBUF;
 __sfr __at(0x87) PCON;
 
 // Timer
-__sfr __at(0x88) TCON;
+__sfr  __at(0x88) TCON;
+__sbit __at(0x88) IT0;
+__sbit __at(0x89) IE0;
+__sbit __at(0x8A) IT1;
+__sbit __at(0x8B) IE1;
+__sbit __at(0x8C) TR0;
+__sbit __at(0x8D) TF0;
+__sbit __at(0x8E) TR1;
+__sbit __at(0x8F) TF1;
+
 __sfr __at(0x89) TMOD;
 __sfr __at(0x8A) TL0;
 __sfr __at(0x8B) TL1;
@@ -197,7 +214,10 @@ __sfr __at(0xC6) IAP_TRIG;
 __sfr __at(0xC7) IAP_CONTR;
 __sfr __at(0xF5) IAP_TPS;
 
+// RST
+__sfr __at(0xFF) RST_CFG;
+
 /**
  * @brief       Initialize platform.
  */
-extern void platform_init(void);
+extern void initPlatform(void);
