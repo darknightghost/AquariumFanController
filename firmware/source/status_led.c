@@ -2,17 +2,19 @@
 
 #include <status_led.h>
 
+#define MODE_MASK ((uint8_t)(1 << GPIO_BIT_STATUS_LED))
+
 /**
  * @brief       Initialize status LED.
  */
-void initSatusLED(void)
+void initStatusLED(void)
 {
     // Set GPIO value.
     GPIO_PORT_STATUS_LED = 1;
 
     // Set GPIO mode.
-    GPIO_MODE1_STATUS_LED |= 1 << GPIO_BIT_STATUS_LED;
-    GPIO_MODE0_STATUS_LED |= 1 << GPIO_BIT_STATUS_LED;
+    GPIO_MODE1_STATUS_LED &= ~MODE_MASK;
+    GPIO_MODE0_STATUS_LED &= ~MODE_MASK;
 }
 
 /**
@@ -23,7 +25,7 @@ void testStatusLEDTask(void)
     static __xdata uint32_t oldTime     = 0;
     static __xdata bool     status      = false;
     uint32_t                currentTime = getSystemClock();
-    if (currentTime - oldTime > 500 * 1000) {
+    if (currentTime - oldTime >= 500L * 1000L) {
         status = ! status;
         setStatusLED(status);
         oldTime = currentTime;

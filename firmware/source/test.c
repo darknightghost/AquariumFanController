@@ -25,7 +25,6 @@ void testLoop(void)
 {
     while (1) {
         // Call test tasks.
-        // testStatusLEDTask();
-        setStatusLED(true);
+        testStatusLEDTask();
     }
 }

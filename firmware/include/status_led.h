@@ -13,7 +13,7 @@
 /**
  * @brief       Initialize status LED.
  */
-extern void initSatusLED(void);
+extern void initStatusLED(void);
 
 /**
  * @brief       Task to test status LED.

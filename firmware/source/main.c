@@ -8,6 +8,7 @@
  */
 void mainLoop()
 {
+    setStatusLED(true);
     while (1) {
     }
 }
@@ -21,11 +22,11 @@ int main(void)
 {
     initPlatform();
 
-    // if (needTest()) {
-    testLoop();
-    //} else {
-    // mainLoop();
-    //}
+    if (needTest()) {
+        testLoop();
+    } else {
+        mainLoop();
+    }
 
     return 0;
 }

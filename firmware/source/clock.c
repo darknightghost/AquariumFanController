@@ -2,6 +2,8 @@
 
 #include <clock.h>
 
+#include <status_led.h>
+
 /// System time.
 static __data uint32_t l_systemTime;
 
@@ -27,6 +29,8 @@ void initClock(void)
     // Set timer 0 initial value.
     TL0 = l_clockInitValue & 0xFF;
     TH0 = l_clockInitValue >> 8;
+
+    ET0 = 1;
 }
 
 /**

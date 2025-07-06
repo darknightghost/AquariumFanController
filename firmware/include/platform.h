@@ -122,6 +122,8 @@ __sbit __at(0xCA) P5_2;
 __sbit __at(0xCB) P5_3;
 __sbit __at(0xCC) P5_4;
 __sbit __at(0xCD) P5_5;
+__sbit __at(0xCE) P5_6;
+__sbit __at(0xCF) P5_7;
 
 __sfr __at(0xC9) P5M1;
 __sfr __at(0xCA) P5M0;
