@@ -1,6 +1,8 @@
 #include <clock.h>
+#include <fan.h>
 #include <platform.h>
 #include <status_led.h>
+
 #include <test.h>
 
 /**

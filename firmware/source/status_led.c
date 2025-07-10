@@ -26,8 +26,8 @@ void testStatusLEDTask(void)
     static __xdata bool     status       = false;
     uint32_t                currentCount = getSystemClock() / (500L * 1000);
     if (currentCount != oldCount) {
-        status = ! status;
         setStatusLED(status);
+        status   = ! status;
         oldCount = currentCount;
     }
 }

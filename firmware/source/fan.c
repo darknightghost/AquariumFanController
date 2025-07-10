@@ -31,21 +31,66 @@ void initFan(void)
     l_count      = 0;
     l_percentage = 0;
 
-    // T4T3M |= 0x02;		//定时器时钟1T模式
-    // T3L = 0x75;		//设置定时初始值
-    // T3H = 0xF9;		//设置定时初始值
-    // T4T3M |= 0x08;		//定时器3开始计时
+    T4T3M |= 0x02; // Timer 3 : 1T.
+    TM3PS = 0x00;
+
+    T3L = l_clockInitValue & 0xFF;
+    T3H = (l_clockInitValue & 0xFF00) >> 8;
+
+    // Enable timer3 interrupt.
+    IE2 |= 0x20;
 }
 
 /**
  * @brief       Start fan.
  */
-void startFan(void) {}
+void startFan(void)
+{
+    // Start.
+    T4T3M |= 0x08;
+}
 
 /**
  * @brief       Task to test fan.
  */
-void testFanTask(void) {}
+void testFanTask(void)
+{
+    static __xdata uint32_t oldCount     = 0;
+    static __xdata uint8_t  status       = 0;
+    uint32_t                currentCount = getSystemClock() / (500L * 1000);
+    if (currentCount != oldCount) {
+        switch (status) {
+            case 0: {
+                setFanPercentage(0);
+            } break;
+            case 1: {
+                setFanPercentage(25);
+            } break;
+            case 2: {
+                setFanPercentage(0);
+            } break;
+            case 3: {
+                setFanPercentage(50);
+            } break;
+            case 4: {
+                setFanPercentage(0);
+            } break;
+            case 5: {
+                setFanPercentage(75);
+            } break;
+            case 6: {
+                setFanPercentage(0);
+            } break;
+            case 7: {
+                setFanPercentage(100);
+            } break;
+        }
+        ++status;
+        if (status > 7) {
+            status = 0;
+        }
+    }
+}
 
 /**
  * @brief       Set PWM percentage of the fan.
@@ -57,7 +102,7 @@ void setFanPercentage(uint8_t percentage)
 
 /**
  * @brief       Timer0 ISR.
- */
+  : */
 void fanTimer3ISR(void) __interrupt(INT_TIMER3)
 {
     EA = 0;

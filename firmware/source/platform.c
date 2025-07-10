@@ -1,4 +1,5 @@
 #include <clock.h>
+#include <fan.h>
 #include <status_led.h>
 
 #include <platform.h>
@@ -42,10 +43,12 @@ void initPlatform(void)
     // Initialize modules.
     initClock();
     initStatusLED();
+    initFan();
 
     // Enable interrpution.
     EA = 1;
 
     // Start modules.
     startClock();
+    startFan();
 }

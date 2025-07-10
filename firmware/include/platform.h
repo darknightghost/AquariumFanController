@@ -195,6 +195,19 @@ __sfr __at(0x8B) TL1;
 __sfr __at(0x8C) TH0;
 __sfr __at(0x8D) TH1;
 __sfr __at(0x8E) AUXR;
+__sfr __at(0x8F) INTCLKO;
+__sfr __at(0xAA) WKTCL;
+__sfr __at(0xAB) WKTCH;
+__sfr __at(0xD1) T4T3M;
+__sfr __at(0xD2) T4H;
+__sfr __at(0xD3) T4L;
+__sfr __at(0xD4) T3H;
+__sfr __at(0xD5) T3L;
+__sfr __at(0xD6) T2H;
+__sfr __at(0xD7) T2L;
+#define TM2PS (*((uint8_t *)0xFEA2))
+#define TM3PS (*((uint8_t *)0xFEA3))
+#define TM4PS (*((uint8_t *)0xFEA4))
 
 // Interrupt
 __sfr  __at(0xA8) IE;
@@ -210,8 +223,6 @@ __sbit __at(0xAF) EA;
 __sfr __at(0xAF) IE2;
 __sfr __at(0x8F) INTCLKO;
 __sfr __at(0xB8) IP;
-#include <stdbool.h>
-#include <stdint.h>
 
 __sfr __at(0xB7) IPH;
 __sfr __at(0xB5) IP2;

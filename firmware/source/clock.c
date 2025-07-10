@@ -30,6 +30,7 @@ void initClock(void)
     TL0 = l_clockInitValue & 0xFF;
     TH0 = l_clockInitValue >> 8;
 
+    // Enable time0 interrupt.
     ET0 = 1;
 }
 

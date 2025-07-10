@@ -1,6 +1,7 @@
-#include <test.h>
-
+#include <fan.h>
 #include <status_led.h>
+
+#include <test.h>
 
 /**
  * @brief       Initialize test module.
@@ -26,5 +27,6 @@ void testLoop(void)
     while (1) {
         // Call test tasks.
         testStatusLEDTask();
+        testFanTask();
     }
 }
