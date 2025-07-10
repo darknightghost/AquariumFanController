@@ -1,6 +1,11 @@
 #include <clock.h>
 #include <fan.h>
 #include <status_led.h>
+// #include <display.h>
+// #include <serial.h>
+// #include <console.h>
+// #include <1-wire.h>
+// #include <sensor.h>
 
 #include <platform.h>
 
