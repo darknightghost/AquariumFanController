@@ -1,7 +1,7 @@
 #include <clock.h>
+#include <display.h>
 #include <fan.h>
 #include <status_led.h>
-// #include <display.h>
 // #include <serial.h>
 // #include <console.h>
 // #include <1-wire.h>
@@ -49,6 +49,7 @@ void initPlatform(void)
     initClock();
     initStatusLED();
     initFan();
+    initDisplay();
 
     // Enable interrpution.
     EA = 1;
@@ -56,4 +57,5 @@ void initPlatform(void)
     // Start modules.
     startClock();
     startFan();
+    startDisplay();
 }

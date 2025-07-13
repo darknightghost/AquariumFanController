@@ -5,6 +5,11 @@
 
 #include <fan.h>
 
+#define GPIO_PORT_FAN  P1_3
+#define GPIO_BIT_FAN   3
+#define GPIO_MODE1_FAN P1M1
+#define GPIO_MODE0_FAN P1M0
+
 #define MODE_MASK ((uint8_t)(1 << GPIO_BIT_FAN))
 
 // Percentage.
@@ -12,7 +17,7 @@ static __data uint8_t l_percentage;
 static __data uint8_t l_count;
 
 #define PWM_FREQ  2000
-#define TICK_TIME ((uint16_t)(1000000L / 2000 / 100))
+#define TICK_TIME ((uint16_t)(1000000L / PWM_FREQ / 100))
 
 #define l_clockInitValue (65536 - (IRC_FEQ / 1000000) * TICK_TIME)
 
@@ -25,8 +30,10 @@ void initFan(void)
     GPIO_PORT_FAN = 1;
 
     // Set GPIO mode.
+    P_SW2 |= 0x80;
     GPIO_MODE1_FAN &= ~MODE_MASK;
     GPIO_MODE0_FAN &= ~MODE_MASK;
+    P_SW2 &= ~(uint8_t)0x80;
 
     l_count      = 0;
     l_percentage = 0;
@@ -57,7 +64,8 @@ void testFanTask(void)
 {
     static __xdata uint32_t oldCount     = 0;
     static __xdata uint8_t  status       = 0;
-    uint32_t                currentCount = getSystemClock() / (500L * 1000);
+    __xdata uint32_t        currentCount = getSystemClock() / (500L * 1000);
+
     if (currentCount != oldCount) {
         switch (status) {
             case 0: {
@@ -89,6 +97,7 @@ void testFanTask(void)
         if (status > 7) {
             status = 0;
         }
+        oldCount = currentCount;
     }
 }
 
@@ -101,19 +110,19 @@ void setFanPercentage(uint8_t percentage)
 }
 
 /**
- * @brief       Timer0 ISR.
+ * @brief       Timer3 ISR.
   : */
 void fanTimer3ISR(void) __interrupt(INT_TIMER3)
 {
     EA = 0;
-    ++l_count;
-    if (l_count > 100) {
-        l_count = 0;
-    }
     if (l_count < l_percentage) {
         GPIO_PORT_FAN = 0;
     } else {
         GPIO_PORT_FAN = 1;
+    }
+    ++l_count;
+    if (l_count > 100) {
+        l_count = 0;
     }
     EA = 1;
 }

@@ -1,4 +1,5 @@
 #include <clock.h>
+#include <display.h>
 #include <fan.h>
 #include <platform.h>
 #include <status_led.h>

@@ -2,6 +2,11 @@
 
 #include <status_led.h>
 
+#define GPIO_PORT_STATUS_LED  P1_5
+#define GPIO_BIT_STATUS_LED   5
+#define GPIO_MODE1_STATUS_LED P1M1
+#define GPIO_MODE0_STATUS_LED P1M0
+
 #define MODE_MASK ((uint8_t)(1 << GPIO_BIT_STATUS_LED))
 
 /**
@@ -24,7 +29,7 @@ void testStatusLEDTask(void)
 {
     static __xdata uint32_t oldCount     = 0;
     static __xdata bool     status       = false;
-    uint32_t                currentCount = getSystemClock() / (500L * 1000);
+    __xdata uint32_t        currentCount = getSystemClock() / (500L * 1000);
     if (currentCount != oldCount) {
         setStatusLED(status);
         status   = ! status;

@@ -4,6 +4,8 @@
 
 #include <status_led.h>
 
+#define SYS_TICK 10
+
 /// System time.
 static __data uint32_t l_systemTime;
 

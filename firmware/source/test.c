@@ -1,3 +1,4 @@
+#include <display.h>
 #include <fan.h>
 #include <status_led.h>
 
@@ -28,5 +29,6 @@ void testLoop(void)
         // Call test tasks.
         testStatusLEDTask();
         testFanTask();
+        testDisplayTask();
     }
 }

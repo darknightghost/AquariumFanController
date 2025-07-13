@@ -5,11 +5,6 @@
 
 #include <platform.h>
 
-#define GPIO_PORT_STATUS_LED  P1_5
-#define GPIO_BIT_STATUS_LED   5
-#define GPIO_MODE1_STATUS_LED P1M1
-#define GPIO_MODE0_STATUS_LED P1M0
-
 /**
  * @brief       Initialize status LED.
  */

@@ -4,8 +4,6 @@
 
 #include <platform.h>
 
-#define SYS_TICK 10
-
 /**
  * @brief       Initialize clock.
  */
