@@ -1,5 +1,6 @@
 #include <display.h>
 #include <fan.h>
+#include <sensor.h>
 #include <status_led.h>
 
 #include <test.h>

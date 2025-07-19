@@ -4,7 +4,7 @@
 #include <status_led.h>
 // #include <serial.h>
 // #include <console.h>
-// #include <1-wire.h>
+#include <1-wire.h>
 // #include <sensor.h>
 
 #include <platform.h>
@@ -50,6 +50,7 @@ void initPlatform(void)
     initStatusLED();
     initFan();
     initDisplay();
+    initOneWire();
 
     // Enable interrpution.
     EA = 1;

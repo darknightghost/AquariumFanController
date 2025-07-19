@@ -7,8 +7,8 @@
  *
  * IRC      : 35 MHz
  * Timer0   : System clock.
- * Timer1   : UART0.
- * Timer2   : 1-wire bus timer.
+ * Timer1   : 1-wire bus timer.
+ * Timer2   : UART0.
  * Timer3   : Fan pwm.
  * Timer4   : Display.
  * UART0    : Debug console.
@@ -24,12 +24,18 @@
     #define __sfr  uint8_t
     #define __sbit uint8_t
     #define __interrupt(v)
+    #define INT_INT0
     #define INT_TIMER0
     #define INT_INT1
+    #define INT_TIMER1
     #define INT_UART1
+    #define INT_ADC
+    #define INT_TIMER2
+    #define INT_TIMER3
+    #define INT_TIMER4
 
 #else
-    #define INT_0      0
+    #define INT_INT0   0
     #define INT_TIMER0 1
     #define INT_INT1   2
     #define INT_TIMER1 3
@@ -220,9 +226,16 @@ __sbit __at(0xAD) EADC;
 __sbit __at(0xAE) ELVD;
 __sbit __at(0xAF) EA;
 
-__sfr __at(0xAF) IE2;
-__sfr __at(0x8F) INTCLKO;
-__sfr __at(0xB8) IP;
+__sfr  __at(0xAF) IE2;
+__sfr  __at(0x8F) INTCLKO;
+__sfr  __at(0xB8) IP;
+__sbit __at(0xB8) PX0;
+__sbit __at(0xB9) PT0;
+__sbit __at(0xBA) PX1;
+__sbit __at(0xBB) PT1;
+__sbit __at(0xBC) PS;
+__sbit __at(0xBD) PADC;
+__sbit __at(0xBE) PLVD;
 
 __sfr __at(0xB7) IPH;
 __sfr __at(0xB5) IP2;

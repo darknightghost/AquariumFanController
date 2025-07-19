@@ -177,7 +177,7 @@ inline void divModU16U16(uint16_t  op1,
     MD5 = OP16(op2).bytes.b1;
     MD4 = OP16(op2).bytes.b0;
 
-    ARCON = 5 << 5;
+    ARCON = (uint8_t)(5 << 5);
     OPCON = 1;
     while ((OPCON & 1) != 0) {
     }

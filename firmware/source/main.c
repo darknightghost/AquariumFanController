@@ -1,3 +1,4 @@
+#include <1-wire.h>
 #include <clock.h>
 #include <display.h>
 #include <fan.h>
