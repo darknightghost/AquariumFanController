@@ -1,9 +1,11 @@
 #include <1-wire.h>
 #include <clock.h>
 
+#include <status_led.h>
+
 #include <sensor.h>
 
-#define CONVERT_TIME 7500000L
+#define CONVERT_TIME ((uint32_t)750000L)
 
 /**
  * @brief   Status.
@@ -21,6 +23,15 @@ enum Status {
     ReadTempTL,          ///< Read low 8 bits of temperature.
     ReadTempTH,          ///< Read low 8 bits of temperature.
     Ready,               ///< Temperature ready.
+    Error,               ///< Sensor read error.
+};
+
+/**
+ * @brief   Read buffer.
+ */
+union ReadBuffer {
+    uint16_t value;
+    uint8_t  bytes[2];
 };
 
 /// Status.
@@ -30,7 +41,7 @@ static __xdata enum Status l_status;
 static __xdata float l_temperature;
 
 /// Read buffer.
-static __xdata uint16_t l_buffer;
+static __xdata union ReadBuffer l_buffer;
 
 /// Timestamp convert begin.
 static __xdata uint32_t l_beginConvertTime = 0;
@@ -46,11 +57,19 @@ void initSensor(void)
 }
 
 /**
- * @brief       Check if the temperature ready.
+ * @brief       Get sensor temperature status.
  */
-bool isSensorTemperatureReady(void)
+enum SensorStatus getSensorTemperatureStatus(void)
 {
-    return l_status == Ready;
+    if (l_status == Initialized) {
+        return SensorInitialized;
+    } else if (l_status == Ready) {
+        return SensorReady;
+    } else if (l_status == Error) {
+        return SensorError;
+    } else {
+        return SensorBusy;
+    }
 }
 
 /**
@@ -58,11 +77,12 @@ bool isSensorTemperatureReady(void)
  */
 void startReadingSensor(void)
 {
-    if ((l_status != Ready) && (l_status != Initialized)) {
+    if ((l_status != Ready) && (l_status != Initialized)
+        && (l_status != Error)) {
         return;
     }
-    l_buffer = 0x0000;
-    l_status = ResettingWrite;
+    l_buffer.value = 0x0000;
+    l_status       = ResettingWrite;
     startResetOneWire();
 }
 
@@ -106,8 +126,7 @@ static inline void onSendConvertTemp0x44(void)
 static inline void onConvertBegin(void)
 {
     l_beginConvertTime = getSystemClock();
-
-    return;
+    l_status           = ConvertDelay;
 }
 
 /**
@@ -156,7 +175,7 @@ static inline void onSendReadTemp0xBE(void)
 static inline void onReadTempTL(void)
 {
     // Get data read.
-    l_buffer |= getDataOneWireRead();
+    l_buffer.bytes[0] = getDataOneWireRead();
 
     // Nest status.
     l_status = ReadTempTH;
@@ -169,15 +188,15 @@ static inline void onReadTempTL(void)
 static inline void onReadTempTH(void)
 {
     // Get data read.
-    l_buffer |= (((uint16_t)getDataOneWireRead()) << 8);
+    l_buffer.bytes[1] = getDataOneWireRead();
 
     // Convert temperature.
-    if (l_buffer & 0x8000) {
+    if (l_buffer.value & 0x8000) {
         // Below zero.
-        l_temperature = (~l_buffer) * 0.625;
+        l_temperature = -((float)(~l_buffer.value)) * 0.0625;
     } else {
         // Above zero.
-        l_temperature = l_buffer * 0.625;
+        l_temperature = ((float)(l_buffer.value)) * 0.0625;
     }
 
     // Nest status.
@@ -217,10 +236,11 @@ static inline void dispatchSensorTask(void)
  */
 void sensorTask(void)
 {
-    if (isOneWireOperationFinished()) {
+    __xdata enum BusOpStatus busStatus = getOneWireOperationStatus();
+    if (busStatus == BusReady) {
         dispatchSensorTask();
-    } else {
-        return;
+    } else if (busStatus == BusError) {
+        l_status = Error;
     }
 }
 

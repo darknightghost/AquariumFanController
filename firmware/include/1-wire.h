@@ -5,16 +5,25 @@
 #include <platform.h>
 
 /**
+ * @brief   Bus operation status.
+ */
+enum BusOpStatus {
+    BusReady, ///< Bus ready.
+    BusError, ///< Bus error.
+    BusBusy   ///< Bus busy.
+};
+
+/**
  * @brief       Initialize 1-wire bus module.
  */
 extern void initOneWire(void);
 
 /**
- * @brief       Check if 1-wire bus operation finished.
+ * @brief       Get 1-wire bus operation status.
  *
- * @return      \c true if finished.
+ * @return      Status.
  */
-extern bool isOneWireOperationFinished(void);
+extern enum BusOpStatus getOneWireOperationStatus(void);
 
 /**
  * @brief       Start reset.

@@ -5,14 +5,24 @@
 #include <platform.h>
 
 /**
+ * @brief   Bus operation status.
+ */
+enum SensorStatus {
+    SensorInitialized, ///< Sensor initialize.
+    SensorReady,       ///< Sensor ready.
+    SensorError,       ///< Sensor error.
+    SensorBusy         ///< Sensor busy.
+};
+
+/**
  * @brief       Initialize sensor.
  */
 extern void initSensor(void);
 
 /**
- * @brief       Check if the temperature ready.
+ * @brief       Get sensor temperature status.
  */
-extern bool isSensorTemperatureReady(void);
+extern enum SensorStatus getSensorTemperatureStatus(void);
 
 /**
  * @brief       Start reading sensor.

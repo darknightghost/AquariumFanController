@@ -3,6 +3,7 @@
 #include <display.h>
 #include <fan.h>
 #include <platform.h>
+#include <sensor.h>
 #include <status_led.h>
 
 #include <test.h>
@@ -14,6 +15,20 @@ void mainLoop(void)
 {
     setStatusLED(true);
     while (1) {
+        // Run tasks.
+        sensorTask();
+
+        // Get sensor status.
+        __xdata enum SensorStatus sensorStatus = getSensorTemperatureStatus();
+        if (sensorStatus != SensorBusy) {
+            if (sensorStatus == SensorReady) {
+                setDisplayTemperature(getSensorTemperature());
+            } else if (sensorStatus == SensorError) {
+                setDisplayError();
+            }
+            startReadingSensor();
+        }
+        startReadingSensor();
     }
 }
 

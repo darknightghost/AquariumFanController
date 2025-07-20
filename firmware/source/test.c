@@ -31,5 +31,6 @@ void testLoop(void)
         testStatusLEDTask();
         testFanTask();
         testDisplayTask();
+        testSensorTask();
     }
 }

@@ -65,7 +65,7 @@ __sbit __at(0x87) P0_7;
 __sfr __at(0x93) P0M1;
 __sfr __at(0x94) P0M0;
 
-#define P0PU (*((uint8_t *)0xFE10))
+#define P0PU (*((volatile uint8_t *)0xFE10))
 
 // P1
 __sfr  __at(0x90) P1;
@@ -81,7 +81,7 @@ __sbit __at(0x97) P1_7;
 __sfr __at(0x91) P1M1;
 __sfr __at(0x92) P1M0;
 
-#define P1PU (*((uint8_t *)0xFE11))
+#define P1PU (*((volatile uint8_t *)0xFE11))
 
 // P2
 __sfr  __at(0xA0) P2;
@@ -97,7 +97,7 @@ __sbit __at(0xA7) P2_7;
 __sfr __at(0x95) P2M1;
 __sfr __at(0x96) P2M0;
 
-#define P2PU (*((uint8_t *)0xFE12))
+#define P2PU (*((volatile uint8_t *)0xFE12))
 
 // P3
 __sfr  __at(0xB0) P3;
@@ -113,7 +113,7 @@ __sbit __at(0xB7) P3_7;
 __sfr __at(0xB1) P3M1;
 __sfr __at(0xB2) P3M0;
 
-#define P3PU (*((uint8_t *)0xFE13))
+#define P3PU (*((volatile uint8_t *)0xFE13))
 
 // P4
 __sfr  __at(0xC0) P4;
@@ -129,7 +129,7 @@ __sbit __at(0xC7) P4_7;
 __sfr __at(0xB3) P4M1;
 __sfr __at(0xB4) P4M0;
 
-#define P4PU (*((uint8_t *)0xFE14))
+#define P4PU (*((volatile uint8_t *)0xFE14))
 
 // P5
 __sfr  __at(0xC8) P5;
@@ -145,7 +145,7 @@ __sbit __at(0xCF) P5_7;
 __sfr __at(0xC9) P5M1;
 __sfr __at(0xCA) P5M0;
 
-#define P5PU (*((uint8_t *)0xFE15))
+#define P5PU (*((volatile uint8_t *)0xFE15))
 
 // P6
 __sfr  __at(0xE8) P6;
@@ -161,7 +161,7 @@ __sbit __at(0xEF) P6_7;
 __sfr __at(0xCB) P6M1;
 __sfr __at(0xCC) P6M0;
 
-#define P6PU (*((uint8_t *)0xFE16))
+#define P6PU (*((volatile uint8_t *)0xFE16))
 
 // P7
 __sfr  __at(0xF8) P7;
@@ -177,7 +177,7 @@ __sbit __at(0xFF) P7_7;
 __sfr __at(0xE1) P7M1;
 __sfr __at(0xE2) P7M0;
 
-#define P7PU (*((uint8_t *)0xFE17))
+#define P7PU (*((volatile uint8_t *)0xFE17))
 
 // Serial
 __sfr __at(0x98) SCON;
@@ -211,9 +211,9 @@ __sfr __at(0xD4) T3H;
 __sfr __at(0xD5) T3L;
 __sfr __at(0xD6) T2H;
 __sfr __at(0xD7) T2L;
-#define TM2PS (*((uint8_t *)0xFEA2))
-#define TM3PS (*((uint8_t *)0xFEA3))
-#define TM4PS (*((uint8_t *)0xFEA4))
+#define TM2PS (*((volatile uint8_t *)0xFEA2))
+#define TM3PS (*((volatile uint8_t *)0xFEA3))
+#define TM4PS (*((volatile uint8_t *)0xFEA4))
 
 // Interrupt
 __sfr  __at(0xA8) IE;
@@ -258,17 +258,17 @@ __sfr __at(0xF5) IAP_TPS;
 __sfr __at(0xFF) RST_CFG;
 
 // Math.
-#define MD3 (*((uint8_t *)0xFCF0))
-#define MD2 (*((uint8_t *)0xFCF1))
-#define MD1 (*((uint8_t *)0xFCF2))
-#define MD0 (*((uint8_t *)0xFCF3))
+#define MD3 (*((volatile uint8_t *)0xFCF0))
+#define MD2 (*((volatile uint8_t *)0xFCF1))
+#define MD1 (*((volatile uint8_t *)0xFCF2))
+#define MD0 (*((volatile uint8_t *)0xFCF3))
 
-#define MD5 (*((uint8_t *)0xFCF4))
-#define MD4 (*((uint8_t *)0xFCF5))
+#define MD5 (*((volatile uint8_t *)0xFCF4))
+#define MD4 (*((volatile uint8_t *)0xFCF5))
 
-#define ARCON (*((uint8_t *)0xFCF6))
+#define ARCON (*((volatile uint8_t *)0xFCF6))
 
-#define OPCON (*((uint8_t *)0xFCF7))
+#define OPCON (*((volatile uint8_t *)0xFCF7))
 
 /**
  * @brief       Initialize platform.
