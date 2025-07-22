@@ -47,6 +47,10 @@
 
 #endif
 
+#if ! defined(NAN)
+    #define NAN (0.0f / 0.0f)
+#endif
+
 // Memory
 __sfr __at(0xBA) P_SW2;
 

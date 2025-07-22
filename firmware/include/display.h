@@ -33,6 +33,11 @@ extern void setDisplayTemperature(float temperature);
 extern void setDisplayError(void);
 
 /**
+ * @brief       Set display empty.
+ */
+extern void setDisplayEmpty(void);
+
+/**
  * @brief       Timer4 ISR.
  */
 extern void displayTimer4ISR(void) __interrupt(INT_TIMER4);

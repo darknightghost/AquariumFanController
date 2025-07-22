@@ -1,7 +1,10 @@
+#include <math.h>
+
 #include <1-wire.h>
 #include <clock.h>
 #include <display.h>
 #include <fan.h>
+#include <key.h>
 #include <platform.h>
 #include <sensor.h>
 #include <status_led.h>
@@ -14,9 +17,11 @@
 void mainLoop(void)
 {
     setStatusLED(true);
+    setDisplayTemperature(NAN);
     while (1) {
         // Run tasks.
         sensorTask();
+        keyTask();
 
         // Get sensor status.
         __xdata enum SensorStatus sensorStatus = getSensorTemperatureStatus();

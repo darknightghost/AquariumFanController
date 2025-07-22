@@ -1,3 +1,5 @@
+#include <math.h>
+
 #include <clock.h>
 #include <hd_math.h>
 
@@ -300,8 +302,11 @@ inline uint32_t toSegmentCode(uint8_t num)
 void setDisplayTemperature(float temperature)
 {
     __xdata uint8_t data[3];
-
-    if (temperature >= 10.0 && temperature < 100.0) {
+    if (isnan(temperature)) {
+        data[0] = SEG_MINUS;
+        data[1] = SEG_MINUS;
+        data[2] = SEG_MINUS;
+    } else if (temperature >= 10.0 && temperature < 100.0) {
         __xdata uint16_t t10 = (uint16_t)(temperature * 10);
 
         __xdata uint16_t unit10;
@@ -385,6 +390,24 @@ void setDisplayError(void)
     l_segmentData[0].value = SEG_E;
     l_segmentData[1].value = SEG_R;
     l_segmentData[2].value = SEG_R;
+    EA                     = oldEA;
+}
+
+/**
+ * @brief       Set display empty.
+ */
+void setDisplayEmpty(void)
+{
+    __sbit oldEA = EA;
+    EA           = 0;
+
+    GPIO_DISPLAY_DA1 = 1;
+    GPIO_DISPLAY_DA2 = 1;
+    GPIO_DISPLAY_DA3 = 1;
+
+    l_segmentData[0].value = 0;
+    l_segmentData[1].value = 0;
+    l_segmentData[2].value = 0;
     EA                     = oldEA;
 }
 
