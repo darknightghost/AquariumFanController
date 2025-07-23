@@ -247,6 +247,7 @@ __sfr __at(0xB6) IP2H;
 __sfr __at(0xDF) IP3;
 __sfr __at(0xEE) IP3H;
 
+// EEPROM
 #define EEPROM_SIZE      4096
 #define EEPROM_PAGE_SIZE 512
 
