@@ -76,7 +76,7 @@ void initKey(void)
 /**
  * @brief       Get key `UP` status.
  */
-int16_t getKeyUpStatus()
+int16_t getKeyUpStatus(void)
 {
     GET_KEY_STATUS_IMPL(l_keyUpInfo);
 }
@@ -84,7 +84,7 @@ int16_t getKeyUpStatus()
 /**
  * @brief       Get key `DOWN` status.
  */
-int16_t getKeyDownStatus()
+int16_t getKeyDownStatus(void)
 {
     GET_KEY_STATUS_IMPL(l_keyDownInfo);
 }
@@ -92,7 +92,7 @@ int16_t getKeyDownStatus()
 /**
  * @brief       Get key `SET` status.
  */
-int16_t getKeySetStatus()
+int16_t getKeySetStatus(void)
 {
     GET_KEY_STATUS_IMPL(l_keySetInfo);
 }

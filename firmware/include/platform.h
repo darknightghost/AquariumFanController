@@ -11,9 +11,9 @@
  * Timer2   : UART0.
  * Timer3   : Fan pwm.
  * Timer4   : Display.
- * UART0    : Debug console.
+ * UART0    : Debug output.
  */
-#define IRC_FEQ 35000000
+#define IRC_FEQ 35000000L
 
 #if defined EDITOR_AUTO_COMPLETE
     // Auto-complete.
@@ -184,7 +184,16 @@ __sfr __at(0xE2) P7M0;
 #define P7PU (*((volatile uint8_t *)0xFE17))
 
 // Serial
-__sfr __at(0x98) SCON;
+__sfr  __at(0x98) SCON;
+__sbit __at(0x98) RI;
+__sbit __at(0x99) TI;
+__sbit __at(0x9A) RB8;
+__sbit __at(0x9B) TB8;
+__sbit __at(0x9C) REN;
+__sbit __at(0x9D) SM2;
+__sbit __at(0x9E) SM1;
+__sbit __at(0x9F) SM0_FE;
+
 __sfr __at(0x99) SBUF;
 __sfr __at(0x87) PCON;
 
@@ -274,6 +283,15 @@ __sfr __at(0xFF) RST_CFG;
 #define ARCON (*((volatile uint8_t *)0xFCF6))
 
 #define OPCON (*((volatile uint8_t *)0xFCF7))
+
+// DMA
+#define DMA_UR1T_CFG  (*((volatile uint8_t *)0xFA30))
+#define DMA_UR1T_CR   (*((volatile uint8_t *)0xFA31))
+#define DMA_UR1T_STA  (*((volatile uint8_t *)0xFA32))
+#define DMA_UR1T_AMT  (*((volatile uint8_t *)0xFA33))
+#define DMA_UR1T_DONE (*((volatile uint8_t *)0xFA34))
+#define DMA_UR1T_TXAH (*((volatile uint8_t *)0xFA35))
+#define DMA_UR1T_TXAL (*((volatile uint8_t *)0xFA36))
 
 /**
  * @brief       Initialize platform.

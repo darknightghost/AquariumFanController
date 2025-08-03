@@ -1,6 +1,7 @@
 #include <display.h>
 #include <fan.h>
 #include <sensor.h>
+#include <serial.h>
 #include <status_led.h>
 
 #include <test.h>
@@ -32,5 +33,6 @@ void testLoop(void)
         testFanTask();
         testDisplayTask();
         testSensorTask();
+        testSerialTask();
     }
 }

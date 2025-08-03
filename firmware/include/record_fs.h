@@ -7,13 +7,14 @@
 
 #define RECORD_FS_DATA_BLOCK_SIZE  8
 #define RECORD_FS_SUPER_BLOCK_SIZE (RECORD_FS_DATA_BLOCK_SIZE * 2)
+#define RECORD_FS_IAP_BEGIN        0x4000
+#define RECORD_FS_IAP_END          (64 * 1024)
 
 /**
  * @brief   Record.
  */
 struct Record {
     int16_t targetTemperature; ///< Target temperature(0.01℃ ).
-    uint8_t pwmPercentage;     ///< PWM percentage(percentage).
 };
 
 _Static_assert(sizeof(struct Record) <= RECORD_FS_DATA_BLOCK_SIZE,
@@ -39,7 +40,9 @@ struct RecordFsSuperBlock {
 _Static_assert(sizeof(struct RecordFsSuperBlock) <= RECORD_FS_SUPER_BLOCK_SIZE,
                "Size of super block too big.");
 
-// Data block.
+/**
+ * @brief    Data block.
+ */
 struct RecordFsDataBlock {
     struct Record record;   ///< Record.
     uint8_t       checksum; ///< Checksum.
@@ -49,14 +52,26 @@ _Static_assert(sizeof(struct RecordFsDataBlock) <= RECORD_FS_DATA_BLOCK_SIZE,
                "Size of data block too big.");
 
 /**
+ * @brief   Filesystem status.
+ */
+enum RecordFsStatus {
+    RecordFsStatusBusy,   ///< Busy.
+    RecordFsStatusReady,  ///< Ready for next operation.
+    RecordFsStatusNoData, ///< No data saved.
+    RecordFsStatusError   ///< Error.
+};
+
+/**
  * @brief       Initialize record filesystem.
  */
 extern void initRecordFs(void);
 
 /**
- * @brief       Check if filesystem operation finished.
+ * @brief       Get record filesystem status.
+ *
+ * @return      Status.
  */
-extern bool isRecordFsOperationFinished();
+extern enum RecordFsStatus recordFsStatus(void);
 
 /**
  * @brief       Start reading record.

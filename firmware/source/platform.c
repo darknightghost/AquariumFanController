@@ -1,11 +1,12 @@
+#include <1-wire.h>
 #include <clock.h>
 #include <display.h>
+#include <eeprom.h>
 #include <fan.h>
+#include <log.h>
+#include <sensor.h>
+#include <serial.h>
 #include <status_led.h>
-// #include <serial.h>
-// #include <console.h>
-#include <1-wire.h>
-// #include <sensor.h>
 
 #include <platform.h>
 
@@ -51,6 +52,10 @@ void initPlatform(void)
     initFan();
     initDisplay();
     initOneWire();
+    initSensor();
+    initEEPROM();
+    initSerial();
+    initLog();
 
     // Enable interrpution.
     EA = 1;
@@ -59,4 +64,5 @@ void initPlatform(void)
     startClock();
     startFan();
     startDisplay();
+    startSerial();
 }

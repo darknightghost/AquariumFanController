@@ -15,7 +15,7 @@ extern void initKey(void);
  * @return      If the key is pressed, a time count is returned,  if not,
  *              -1 is returned,
  */
-extern int16_t getKeyUpStatus();
+extern int16_t getKeyUpStatus(void);
 
 /**
  * @brief       Get key `DOWN` status.
@@ -23,7 +23,7 @@ extern int16_t getKeyUpStatus();
  * @return      If the key is pressed, a time count is returned,  if not,
  *              -1 is returned,
  */
-extern int16_t getKeyDownStatus();
+extern int16_t getKeyDownStatus(void);
 
 /**
  * @brief       Get key `SET` status.
@@ -31,7 +31,7 @@ extern int16_t getKeyDownStatus();
  * @return      If the key is pressed, a time count is returned,  if not,
  *              -1 is returned,
  */
-extern int16_t getKeySetStatus();
+extern int16_t getKeySetStatus(void);
 
 /**
  * @brief       Key task.
